@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Carga de Alumnos</title>
+</head>
+<body>
+    <form>
+        <h1>Aqui carga los grupos con la cantidad de Alumnos</h1>
+        <label for="cveGru">Clave de grupo:</label>
+        <input type="text" id="cveGru" maxlength="7" pattern="[A-Z]{4}[0-9]{3}" required>
+        <br><br>
+        <label for="numAlu">Numero de alumnos:</label>
+        <input type="number" id="numAlu" min="1" max="99" required>
+        <br><br>
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
