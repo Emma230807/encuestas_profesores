@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Encuesta</title>
+</head>
+<body>
+    <h1>Encuesta</h1>
+    <form onsubmit="guardar(event)" method="post">
+
+        <input type="text" name="grupo" id="grupo" value="GTID243" readonly>
+
+        <select name="maestro" id="maestro">
+            <option value="sustaita">Sustaita</option>
+            <option value="muro">Muro</option>
+            <option value="tacho">Tacho</option>
+        </select>
+
+        <select name="materia" id="materia">
+            <option value="poo">POO</option>
+            <option value="bdd">BDD</option>
+            <option value="movil">Movil</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="p1">El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.</label>
+        <br>
+        <label><input type="radio" name="p1" value="5" required>5</label>
+        <label><input type="radio" name="p1" value="6">6</label>
+        <label><input type="radio" name="p1" value="7">7</label>
+        <label><input type="radio" name="p1" value="8">8</label>
+        <label><input type="radio" name="p1" value="9">9</label>
+        <label><input type="radio" name="p1" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p2">El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.</label>
+        <br>
+        <label><input type="radio" name="p2" value="5" required>5</label>
+        <label><input type="radio" name="p2" value="6">6</label>
+        <label><input type="radio" name="p2" value="7">7</label>
+        <label><input type="radio" name="p2" value="8">8</label>
+        <label><input type="radio" name="p2" value="9">9</label>
+        <label><input type="radio" name="p2" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p3">Propicia un ambiente de confianza y de participación durante la clase.</label>
+        <br>
+        <label><input type="radio" name="p3" value="5" required>5</label>
+        <label><input type="radio" name="p3" value="6">6</label>
+        <label><input type="radio" name="p3" value="7">7</label>
+        <label><input type="radio" name="p3" value="8">8</label>
+        <label><input type="radio" name="p3" value="9">9</label>
+        <label><input type="radio" name="p3" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p4">Establece controles de evaluación del aprendizaje considerando: exámenes parciales, participación, trabajos, prácticas, etc.</label>
+        <br>
+        <label><input type="radio" name="p4" value="5" required>5</label>
+        <label><input type="radio" name="p4" value="6">6</label>
+        <label><input type="radio" name="p4" value="7">7</label>
+        <label><input type="radio" name="p4" value="8">8</label>
+        <label><input type="radio" name="p4" value="9">9</label>
+        <label><input type="radio" name="p4" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p5">5. El profesor da seguimiento al programa, considerando los propósitos y contenidos, a fin de lograr el saber, el saber hacer y el saber ser.</label>
+        <br>
+        <label><input type="radio" name="p5" value="5" required>5</label>
+        <label><input type="radio" name="p5" value="6">6</label>
+        <label><input type="radio" name="p5" value="7">7</label>
+        <label><input type="radio" name="p5" value="8">8</label>
+        <label><input type="radio" name="p5" value="9">9</label>
+        <label><input type="radio" name="p5" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p6">6. El profesor emplea métodos didácticos (gráficas, folletos, acetatos, ilustraciones, dinámicas de grupo o trabajo en equipo) para facilitar la comprensión de los temas.</label>
+        <br>
+        <label><input type="radio" name="p6" value="5" required>5</label>
+        <label><input type="radio" name="p6" value="6">6</label>
+        <label><input type="radio" name="p6" value="7">7</label>
+        <label><input type="radio" name="p6" value="8">8</label>
+        <label><input type="radio" name="p6" value="9">9</label>
+        <label><input type="radio" name="p6" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p7">7. El profesor proporciona mayores referencias sobre los temas que se les dificulta a los alumnos.</label>
+        <br>
+        <label><input type="radio" name="p7" value="5" required>5</label>
+        <label><input type="radio" name="p7" value="6">6</label>
+        <label><input type="radio" name="p7" value="7">7</label>
+        <label><input type="radio" name="p7" value="8">8</label>
+        <label><input type="radio" name="p7" value="9">9</label>
+        <label><input type="radio" name="p7" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p8">8. El profesor responde todas las preguntas formuladas por los alumnos.</label>
+        <br>
+        <label><input type="radio" name="p8" value="5" required>5</label>
+        <label><input type="radio" name="p8" value="6">6</label>
+        <label><input type="radio" name="p8" value="7">7</label>
+        <label><input type="radio" name="p8" value="8">8</label>
+        <label><input type="radio" name="p8" value="9">9</label>
+        <label><input type="radio" name="p8" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p9">9. El profesor muestra disposición para atender a los alumnos dentro y fuera de clase para resolver y aclarar preguntas o dudas en temas que le interesen.</label>
+        <br>
+        <label><input type="radio" name="p9" value="5" required>5</label>
+        <label><input type="radio" name="p9" value="6">6</label>
+        <label><input type="radio" name="p9" value="7">7</label>
+        <label><input type="radio" name="p9" value="8">8</label>
+        <label><input type="radio" name="p9" value="9">9</label>
+        <label><input type="radio" name="p9" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p10">10. El nivel de dificultad de los ejemplos de clase es congruente con el de los exámenes.</label>
+        <br>
+        <label><input type="radio" name="p10" value="5" required>5</label>
+        <label><input type="radio" name="p10" value="6">6</label>
+        <label><input type="radio" name="p10" value="7">7</label>
+        <label><input type="radio" name="p10" value="8">8</label>
+        <label><input type="radio" name="p10" value="9">9</label>
+        <label><input type="radio" name="p10" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p11">11. El profesor entra a tiempo a clase.</label>
+        <br>
+        <label><input type="radio" name="p11" value="5" required>5</label>
+        <label><input type="radio" name="p11" value="6">6</label>
+        <label><input type="radio" name="p11" value="7">7</label>
+        <label><input type="radio" name="p11" value="8">8</label>
+        <label><input type="radio" name="p11" value="9">9</label>
+        <label><input type="radio" name="p11" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="p12">12. El profesor fomenta el auto-aprendizaje o actividades de lectura.</label>
+        <br>
+        <label><input type="radio" name="p12" value="5" required>5</label>
+        <label><input type="radio" name="p12" value="6">6</label>
+        <label><input type="radio" name="p12" value="7">7</label>
+        <label><input type="radio" name="p12" value="8">8</label>
+        <label><input type="radio" name="p12" value="9">9</label>
+        <label><input type="radio" name="p12" value="10">10</label>
+        <br>
+        <br>
+
+        <label for="comentario">Comentario</label>
+        <input type="text" name="comentario" id="comentario">
+        <br>
+        <br>
+
+        <input type="submit" value="Enviar">
+
+        <script>
+            function guardar(event){
+                let promedio = 0;
+                let suma = 0;
+
+                for(let i = 1; i <= 12; i++){
+                    let respuesta = document.querySelector('input[name="p' + i + '"]:checked');
+
+                    if(respuesta){
+                        suma += parseFloat(respuesta.value);
+                    }
+                }
+                promedio = suma/12;
+                alert(promedio.toFixed(2));
+            }
+        </script>
+
+    </form>
+</body>
+</html>
