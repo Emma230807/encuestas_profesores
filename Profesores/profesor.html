@@ -8,33 +8,45 @@
 <body>
     <h2>Registro Profesor</h2>
 
-    <form id="profesorFormulario" onsubmit="">
+    <form id="profesorFormulario" onsubmit="validarFormulario()">
 
-        <!
+        <!--Clave profesor-->
+        <label for="clave">Clave Profesor:</label><br><br>
+         <input type="text" id="clave" name="clave" required pattern="[0-9]+"  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+         <br><br>
         
         <!-- Nombre -->
         <label for="nombre">Nombre:</label><br><br>
-        <input type="text" id="nombre" name="nombre" required pattern="^[A-ZÁÉÍÓÚÑ][a-záéíóúñA-ZÁÉÍÓÚÑ\s]*$" >
+        <input type="text" id="nombre" name="nombre" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*"
+        title="los nombres deben empezar con mayuscula y continuar con minusculas">
         <br><br>
 
         <!-- Apellido Paterno -->
          <label for="apellidoPaterno">Apellido Paterno:</label><br><br>
-         <input type="text" id="apellidoPaterno" name="apellidoPaterno">
+         <input type="text" id="apellidoPaterno" name="apellidoPaterno" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+"
+         title="El apellido debe empezar con mayuscula Y continuar con minusculas">
          <br><br>
 
          <!--Apellido Materno-->
          <label for="apellidoMaterno">Apellido Materno:</label><br><br>
-         <input type="text" id="apellidoMaterno" name="apellidoMaterno">
+         <input type="text" id="apellidoMaterno" name="apellidoMaterno" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+"
+         title="El apellido debe empezar con mayuscula Y continuar con minusculas">
          <br><br>
 
           <!--Correo electronico-->
          <label for="correo">Correo Electronico:</label><br><br>
-         <input type="text" id="correo" name="correo">
+         <input type="email" id="correo" name="correo" required>
          <br><br>
 
-        
 
-</body>
-</html>
+        <!-- Botón Enviar -->
+        <input type="submit" value="Enviar">
+
+        </form>
+         <script>
+        function validarFormulario(event) {
+            alert('¡Formulario validado y enviado con éxito!');
+        }  
+    </script>
 </body>
 </html>
