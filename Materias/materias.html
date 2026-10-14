@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Materia</title>
+</head>
+<body>
+    <h1>Registro Materia</h1>
+    <label for="materia">Materia:</label>
+    <input type="text" id="materia" name="materia" required>
+    <br><br>
+   
+    
+    <button type="button" onclick="Validacion()">Registrar</button>
+  
+    <script>
+        function Validacion(){
+            const input= document.getElementById("materia");
+            const materia = input.value.trim();
+            //Solo letras
+            const soloLetras = /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*$/;
+
+            //Validación si esta vacio
+            if(materia === ""){
+                alert("Datos incorrectos: Ingrese el nombre de la materia.");
+            } else if(soloLetras.test(materia)){
+                alert("Datos correctos: Materia guardada.");
+            } else { 
+                alert("Datos incorrectos: Ingrese solo letras.");
+            }
+        }
+       
+    </script>
+</body>
+</html>
