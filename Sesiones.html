@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación de sesiones</title>
+</head>
+<body>
+
+    <main>
+        <h1>Programación de sesiones</h1>
+        <p>Registra el horario de las sesiones de evaluación.</p>
+
+        <form id="formSesion">
+
+            <div>
+                <label for="grupo">Grupo</label>
+                <select id="grupo" name="grupo" required>
+                    <option value="">Seleccionar grupo</option>
+                </select>
+            </div>
+            <br><br>
+
+           
+            <div>
+                <label for="fecha">Fecha de la sesión</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+            <br><br>
+
+            <div>
+                <label for="horaInicio">Hora de inicio</label>
+                <input type="time" id="horaInicio" name="horaInicio" required>
+            </div>
+            <br><br>
+
+            <div>
+                <label for="horaFin">Hora de fin</label>
+                <input type="time" id="horaFin" name="horaFin" required>
+            </div>
+            <br><br>
+
+            <div>
+                <button type="submit">Programar sesión</button>
+                <button type="reset">Limpiar</button>
+            </div>
+            <br><br>
+
+        </form>
+    </main>
+
+</body>
+</html>
