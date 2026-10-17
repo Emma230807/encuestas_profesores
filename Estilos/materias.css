@@ -32,7 +32,7 @@ input[type="text"] {
     padding: 8px;
     margin-bottom: 20px;
     box-sizing: border-box;
-    border: 1px solid #d9822b; /* Color del borde como el de tus capturas */
+    border: 1px solid #d9822b; 
     border-radius: 4px;
 }
 
