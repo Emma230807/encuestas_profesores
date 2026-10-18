@@ -3,51 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Estilos/profesores.css">
-    <title>Registro Profesor</title>
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <title>Registro de profesores</title>
 </head>
 <body>
-    <h2>Registro Profesor</h2>
-
-    <form id="profesorFormulario" onsubmit="validarFormulario()">
-
-        <!--Clave profesor-->
-        <label for="clave">Clave Profesor:</label><br><br>
-         <input type="text" id="clave" name="clave" required pattern="[0-9]+"  oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-         <br><br>
-        
-        <!-- Nombre -->
-        <label for="nombre">Nombre:</label><br><br>
-        <input type="text" id="nombre" name="nombre" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*"
-        title="los nombres deben empezar con mayuscula y continuar con minusculas">
+    <h1>Registro de profesores</h1>
+    <form id="profesorFormulario" onsubmit="validarProfesor(event)">
+        <label for="clave">Clave de empleado:</label><br><br>
+        <input type="text" id="clave" name="clave" minlength="1" maxlength="20" pattern="[A-Za-z0-9-]+" title="Use letras, números o guiones." required>
         <br><br>
-
-        <!-- Apellido Paterno -->
-         <label for="apellidoPaterno">Apellido Paterno:</label><br><br>
-         <input type="text" id="apellidoPaterno" name="apellidoPaterno" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+"
-         title="El apellido debe empezar con mayuscula Y continuar con minusculas">
-         <br><br>
-
-         <!--Apellido Materno-->
-         <label for="apellidoMaterno">Apellido Materno:</label><br><br>
-         <input type="text" id="apellidoMaterno" name="apellidoMaterno" required pattern="[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+"
-         title="El apellido debe empezar con mayuscula Y continuar con minusculas">
-         <br><br>
-
-          <!--Correo electronico-->
-         <label for="correo">Correo Electronico:</label><br><br>
-         <input type="email" id="correo" name="correo" required>
-         <br><br>
-
-
-        <!-- Botón Enviar -->
-        <input type="submit" value="Enviar">
-
-        </form>
-         <script>
-        function validarFormulario(event) {
-            alert('¡Formulario validado y enviado con éxito!');
-        }  
-    </script>
+        <label for="nombre">Nombre:</label><br><br>
+        <input type="text" id="nombre" name="nombre" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
+        <br><br>
+        <label for="apellidoPaterno">Apellido paterno:</label><br><br>
+        <input type="text" id="apellidoPaterno" name="apellidoPaterno" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
+        <br><br>
+        <label for="apellidoMaterno">Apellido materno:</label><br><br>
+        <input type="text" id="apellidoMaterno" name="apellidoMaterno" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
+        <br><br>
+        <label for="correo">Correo electrónico:</label><br><br>
+        <input type="email" id="correo" name="correo" maxlength="120" required>
+        <br><br>
+        <button type="submit">Guardar</button>
+        <button type="reset">Limpiar</button>
+    </form>
+    <p><a href="../index.html">Volver al menú</a></p>
+    <script src="../Scripts/profesores.js"></script>
 </body>
 </html>

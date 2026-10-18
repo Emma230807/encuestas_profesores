@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <title>Asignación de profesores</title>
+</head>
+<body>
+    <h1>Asignación de profesores</h1>
+    
+    <form id="sesionFormulario" onsubmit="validarSesion(event)">
+
+        <label for="grupo">Grupo:</label><br><br>
+        <select id="grupo" name="grupo" required>
+            <option value="">Seleccione un grupo</option>
+        </select>
+        <br><br>
+
+        <label for="fecha">Fecha:</label><br><br>
+        <input type="date" id="fecha" name="fecha" required>
+        <br><br>
+
+        <label for="horaInicio">Hora de inicio:</label><br><br>
+        <input type="time" id="horaInicio" name="horaInicio" required>
+        <br><br>
+
+        <label for="horaFin">Hora de fin:</label><br><br>
+        <input type="time" id="horaFin" name="horaFin" required>
+        <br><br>
+
+        <button type="submit">Programar sesión</button>
+
+    </form>
+    <p><a href="../index.html">Volver al menú</a></p>
+    <script src="../Scripts/asignaciones.js"></script>
+</body>
+</html>

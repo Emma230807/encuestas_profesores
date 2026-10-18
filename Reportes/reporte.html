@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <title>Reporte de evaluación</title>
+</head>
+<body>
+
+    <h1>Reporte de evaluación</h1>
+
+    <form id="reporteFormulario" onsubmit="generarReporte(event)">
+
+        <label for="grupo">Grupo:</label><br><br>
+        <select id="grupo" required>
+            <option value="">Seleccione un grupo</option>
+        </select>
+        <br><br>
+
+        <label for="profesor">Profesor:</label><br><br>
+        <select id="profesor" required>
+            <option value="">Seleccione un profesor</option>
+        </select>
+        <br><br>
+
+        <label for="materia">Materia:</label><br><br>
+        <select id="materia" required>
+            <option value="">Seleccione una materia</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Consultar reporte</button>
+
+    </form>
+
+    <hr>
+
+    <div id="resultado"></div>
+
+    <p><a href="../index.html">Volver al menú</a></p>
+
+    <script src="../Scripts/reportes.js"></script>
+
+</body>
+</html>
