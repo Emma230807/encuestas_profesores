@@ -11,22 +11,22 @@
     
     <form id="sesionFormulario" onsubmit="validarSesion(event)">
 
+        <label for="profesor">Profesor:</label><br><br>
+        <select id="profesor" name="profesor" required>
+            <option value="">Seleccione un profesor</option>
+        </select>
+        <br><br>
+
         <label for="grupo">Grupo:</label><br><br>
         <select id="grupo" name="grupo" required>
             <option value="">Seleccione un grupo</option>
         </select>
         <br><br>
 
-        <label for="fecha">Fecha:</label><br><br>
-        <input type="date" id="fecha" name="fecha" required>
-        <br><br>
-
-        <label for="horaInicio">Hora de inicio:</label><br><br>
-        <input type="time" id="horaInicio" name="horaInicio" required>
-        <br><br>
-
-        <label for="horaFin">Hora de fin:</label><br><br>
-        <input type="time" id="horaFin" name="horaFin" required>
+        <label for="materia">Materia:</label><br><br>
+        <select id="materia" name="materia" required>
+            <option value="">Seleccione una materia</option>
+        </select>
         <br><br>
 
         <button type="submit">Programar sesión</button>
