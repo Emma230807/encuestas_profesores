@@ -97,3 +97,29 @@ ul {
 li {
     margin: 10px 0;
 }
+/* Menú principal */
+
+.inicio {
+    max-width: 1000px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.menu a {
+    margin: 0;
+    padding: 18px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+@media (max-width: 650px) {
+    .menu {
+        grid-template-columns: 1fr;
+    }
+}
