@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    
     <title>Registro Profesor</title>
 </head>
 <body>
@@ -10,8 +12,11 @@
 
     <form id="profesorFormulario" onsubmit="">
 
-        
-        
+        <!--Numero de empleado-->
+        <label for="clave">Clave de empleado:</label><br><br>
+        <input type="text" id="clave" name="clave" minlength="1" maxlength="20" pattern="[0-9]+" required>
+        <br><br>
+
         <!-- Nombre -->
         <label for="nombre">Nombre:</label><br><br>
         <input type="text" id="nombre" name="nombre"  pattern="[A-Z]{1}[a-z]+" required>
@@ -31,6 +36,9 @@
          <label for="correo">Correo Electronico:</label><br><br>
          <input type="email" id="correo" name="correo">
          <br><br>
+
+        <button type="submit">Guardar</button>
+        <button type="reset">Limpiar</button>
 
         
 
