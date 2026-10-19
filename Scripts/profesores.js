@@ -17,10 +17,10 @@ function validarProfesor(event) {
 
     const patronNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*$/;
 
-    if (!/^[A-Za-z0-9-]{1,20}$/.test(clave)) {
-        alert("La clave solo puede contener letras, números y guiones.");
-        return;
-    }
+   if (!/^\d{1,20}$/.test(clave)) {
+    alert("El código de profesor solo puede contener números.");
+    return;
+}
 
     if (!patronNombre.test(nombre)) {
         alert("Ingrese un nombre válido.");
