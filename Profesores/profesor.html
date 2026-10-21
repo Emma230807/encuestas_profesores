@@ -1,33 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
+
+   <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Estilos/estilos.css">
-    <title>Registro de profesores</title>
+ <title>Registro Profesor</title>
 </head>
 <body>
-    <h1>Registro de profesores</h1>
-    <form id="profesorFormulario" onsubmit="validarProfesor(event)">
+    <h2>Registro Profesor</h2>
+
+    <form id="profesorFormulario" onsubmit="">
+
+        <!--Numero de empleado-->
         <label for="clave">Clave de empleado:</label><br><br>
-        <input type="text" id="clave" name="clave" minlength="1" maxlength="20" pattern="[A-Za-z0-9-]+" title="Use letras, números o guiones." required>
+        <input type="text" id="clave" name="clave" minlength="1" maxlength="20" pattern="[0-9]+" required>
         <br><br>
+
+        <!-- Nombre -->
         <label for="nombre">Nombre:</label><br><br>
-        <input type="text" id="nombre" name="nombre" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
+        <input type="text" id="nombre" name="nombre"  pattern="[A-Z]{1}[a-z]+" required>
         <br><br>
-        <label for="apellidoPaterno">Apellido paterno:</label><br><br>
-        <input type="text" id="apellidoPaterno" name="apellidoPaterno" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
-        <br><br>
-        <label for="apellidoMaterno">Apellido materno:</label><br><br>
-        <input type="text" id="apellidoMaterno" name="apellidoMaterno" minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü]+([ '-][A-Za-zÁÉÍÓÚáéíóúÑñÜü]+)*" required>
-        <br><br>
-        <label for="correo">Correo electrónico:</label><br><br>
-        <input type="email" id="correo" name="correo" maxlength="120" required>
-        <br><br>
+
+        <!-- Apellido Paterno -->
+         <label for="apellidoPaterno">Apellido Paterno:</label><br><br>
+         <input type="text" id="apellidoPaterno" name="apellidoPaterno" pattern="[A-Z]{1}[a-z]+" required>
+         <br><br>
+
+         <!--Apellido Materno-->
+         <label for="apellidoMaterno">Apellido Materno:</label><br><br>
+         <input type="text" id="apellidoMaterno" name="apellidoMaterno" pattern="[A-Z]{1}[a-z]+" required>
+         <br><br>
+
+          <!--Correo electronico-->
+         <label for="correo">Correo Electronico:</label><br><br>
+         <input type="email" id="correo" name="correo">
+         <br><br>
+
         <button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
-    </form>
-    <p><a href="../index.html">Volver al menú</a></p>
-    <script src="../Scripts/profesores.js"></script>
+
+        
+
+</body>
+</html>
 </body>
 </html>
