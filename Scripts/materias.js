@@ -1,11 +1,11 @@
-
 function Validacion(event) {
     event.preventDefault();
 
     const input = document.getElementById("materia");
     const materia = input.value.trim();
 
-    const patron = /^[A-ZÁÉÍÓÚÜÑa-záéíóúüñ]+(?:[ '-][A-ZÁÉÍÓÚÜÑa-záéíóúüñ]+)*$/;
+    
+    const patron = /^[A-ZÁÉÍÓÚÑ](?:[' -]?[A-ZÁÉÍÓÚÑa-záéíóúñ]+)*$/;
 
     if (materia === "") {
         alert("Ingrese el nombre de la materia.");
@@ -14,7 +14,8 @@ function Validacion(event) {
     }
 
     if (!patron.test(materia)) {
-        alert("El nombre solo puede contener letras, espacios, apóstrofes y guiones.");
+        
+        alert("El nombre debe comenzar con mayúscula y solo puede contener letras, espacios, apóstrofes y guiones.");
         input.focus();
         return;
     }
