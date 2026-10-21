@@ -15,7 +15,15 @@
 
         <form id="materiaFormulario" onsubmit="Validacion(event)">
             <label for="materia">Nombre de la materia:</label>
-            <input type="text" id="materia" name="materia" maxlength="100" required pattern="[A-Z][a-z]+( [A-Z]{1,}[a-z]{0,})*">
+
+            <input
+                type="text"
+                id="materia"
+                name="materia"
+                maxlength="100"
+                required
+                pattern="[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*"
+            >
 
             <br><br>
 
@@ -23,28 +31,120 @@
             <a href="../index.html">Volver al menú</a>
         </form>
     </div>
+
     <div class="crud">
         <table>
-            <caption>Materias</caption>
+            <caption>Materias registradas</caption>
+
             <thead>
                 <tr>
-                    <th>Nombre de la Materia</th>
-                    <th>Profesor</th>
-                    <th>Correo</th>
+                    <th scope="col">Nombre de la materia</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-
             </thead>
-            <tr>
-                <th></th>
-                <th>Ricardo Muro Gómez</th>
-                <th>ricardomurog4@gmail.com</th>
-            </tr>
+
+            <tbody id="tablaMaterias">
+                <tr>
+                    <td>Materia</td>
+                    <td>
+                        <button type="button" onclick="editarMateria(this)">
+                            Editar
+                        </button>
+
+                        <button type="button" onclick="eliminarMateria(this)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-        <button>Editar</button>
-        <button>Eliminar</button>
     </div>
 
-</body>
+    <script>
+        function Validacion(event) {
+            event.preventDefault();
 
+            const input = document.getElementById("materia");
+            const materia = input.value.trim();
+
+            if (materia === "") {
+                alert("Ingresa el nombre de la materia.");
+                return;
+            }
+
+            const tabla = document.getElementById("tablaMaterias");
+            const fila = document.createElement("tr");
+
+            const celdaMateria = document.createElement("td");
+            celdaMateria.textContent = materia;
+
+            const celdaAcciones = document.createElement("td");
+
+            const botonEditar = document.createElement("button");
+            botonEditar.type = "button";
+            botonEditar.textContent = "Editar";
+            botonEditar.onclick = function () {
+                editarMateria(this);
+            };
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.type = "button";
+            botonEliminar.textContent = "Eliminar";
+            botonEliminar.onclick = function () {
+                eliminarMateria(this);
+            };
+
+            celdaAcciones.appendChild(botonEditar);
+            celdaAcciones.appendChild(botonEliminar);
+
+            fila.appendChild(celdaMateria);
+            fila.appendChild(celdaAcciones);
+
+            tabla.appendChild(fila);
+
+            document.getElementById("materiaFormulario").reset();
+
+            alert("Materia registrada correctamente.");
+        }
+
+        function editarMateria(boton) {
+            const fila = boton.closest("tr");
+            const celda = fila.cells[0];
+            const nombreActual = celda.textContent;
+
+            const nuevoNombre = prompt(
+                "Ingresa el nuevo nombre de la materia:",
+                nombreActual
+            );
+
+            if (nuevoNombre === null || nuevoNombre.trim() === "") {
+                return;
+            }
+
+            const nombre = nuevoNombre.trim();
+            const patron = /^[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*$/;
+
+            if (!patron.test(nombre)) {
+                alert("El nombre debe comenzar con mayúscula y contener solo letras y espacios.");
+                return;
+            }
+
+            celda.textContent = nombre;
+            alert("Materia actualizada correctamente.");
+        }
+
+        function eliminarMateria(boton) {
+            const confirmar = confirm(
+                "¿Estás seguro de que deseas eliminar esta materia?"
+            );
+
+            if (confirmar) {
+                boton.closest("tr").remove();
+                alert("Materia eliminada correctamente.");
+            }
+        }
+    </script>
+
+</body>
 
 </html>
