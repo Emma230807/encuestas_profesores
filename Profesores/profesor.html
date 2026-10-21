@@ -11,7 +11,7 @@
 <body>
     <h2>Registro Profesor</h2>
 
-    <form id="profesorFormulario" onsubmit="">
+    <form id="profesorFormulario" onsubmit="verficacion()">
 
         <!--Numero de empleado-->
         <label for="clave">Clave de empleado:</label><br><br>
@@ -35,13 +35,39 @@
 
         <!--Correo electronico-->
         <label for="correo">Correo Electronico:</label><br><br>
-        <input type="email" id="correo" name="correo">
+        <input type="email" id="correo" name="correo" required>
         <br><br>
 
         <button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
     </form>
 
+    <div class="crud">
+        <table>
+            <caption>Profesores</caption>
+            <thead>
+                <tr>
+                    <th>Numero de Emleado</th>
+                    <th>Profesor</th>
+                    <th>Correo</th>
+                </tr>
+
+            </thead>
+            <tr>
+                <th>2009</th>
+                <th>Ricardo Muro Gómez</th>
+                <th>ricardomurog4@gmail.com</th>
+            </tr>
+        </table>
+        <button>Editar</button>
+        <button>Eliminar</button>
+    </div>
+    
+    <script>
+        function verficacion(event) {
+            alert("Profesor registrado correctamente");
+        }
+    </script>
 
     <p><a href="../index.html">Volver al menú</a></p>
 
