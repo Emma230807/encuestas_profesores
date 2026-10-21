@@ -9,23 +9,29 @@
 <body>
     <h1>Asignación de profesores</h1>
     
-    <form id="sesionFormulario" onsubmit="validarSesion(event)">
+    <form id="asignacionFormulario" onsubmit="validarAsignacion(event)">
 
         <label for="profesor">Profesor:</label><br><br>
-        <select id="profesor" name="profesor" required>
-            <option value="">Seleccione un profesor</option>
+        <label for="profesor">Profesor:</label>
+        <select id="profesor" required>
+        <option value="">Seleccione un profesor</option>
+        <option value="1">Ricardo Muro Gomez</option>
+        <option value="2">Maria Teresa Diaz Robledo</option>
         </select>
         <br><br>
 
         <label for="grupo">Grupo:</label><br><br>
         <select id="grupo" name="grupo" required>
             <option value="">Seleccione un grupo</option>
+            <option value="1">GTID243</option>
         </select>
         <br><br>
 
         <label for="materia">Materia:</label><br><br>
         <select id="materia" name="materia" required>
             <option value="">Seleccione una materia</option>
+             <option value="1">Aplicaciones WEB</option>
+            <option value="2">Analisis y Diseño de Software</option>
         </select>
         <br><br>
 

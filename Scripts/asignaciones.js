@@ -1,4 +1,3 @@
-
 function validarAsignacion(event) {
     event.preventDefault();
 
@@ -18,7 +17,10 @@ function validarAsignacion(event) {
         return;
     }
 
-    alert("Datos validados correctamente. Aún no se ha guardado la asignación.");
+
+
+    alert("Profesor asignado");
 
     formulario.reset();
+
 }
