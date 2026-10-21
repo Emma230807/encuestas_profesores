@@ -15,7 +15,7 @@
 
         <form id="materiaFormulario" onsubmit="Validacion(event)">
             <label for="materia">Nombre de la materia:</label>
-            <input type="text" id="materia" name="materia" maxlength="100" required pattern="[A-Z]{1}[a-z]{1,}">
+            <input type="text" id="materia" name="materia" maxlength="100" required pattern="[A-Z][a-z]+( [A-Z]{1,}[a-z]{0,})*">
 
             <br><br>
 

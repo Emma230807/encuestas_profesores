@@ -51,7 +51,9 @@ a {
     }
 }
 
-a {
+
+input[type="submit"], a, button {
+    font-size: 16px;
     display: inline-block;
     background-color: #d6cba5;
     color: #333;
@@ -63,11 +65,11 @@ a {
     transition: background-color 0.2s;
 }
 
-a:hover {
+input[type="submit"]:hover, a:hover, button:hover{
     background-color: #c2b486;
 }
 
-a:active {
+input[type="submit"]:active, a:active, button:active {
     background-color: #afa174;
 }
 
