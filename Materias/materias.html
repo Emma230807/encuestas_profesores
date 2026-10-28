@@ -10,27 +10,19 @@
 
 <body>
 
-    <div class="container">
         <h1>Registro de materias</h1>
 
         <form id="materiaFormulario" onsubmit="Validacion(event)">
             <label for="materia">Nombre de la materia:</label>
 
-            <input
-                type="text"
-                id="materia"
-                name="materia"
-                maxlength="100"
-                required
-                pattern="[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*"
-            >
+            <input type="text" id="materia" name="materia" maxlength="100" required
+                pattern="[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*">
 
             <br><br>
 
             <button type="submit">Guardar</button>
-            <a href="../index.html">Volver al menú</a>
         </form>
-    </div>
+
 
     <div class="crud">
         <table>
@@ -59,6 +51,7 @@
             </tbody>
         </table>
     </div>
+    <a href="../index.html">Volver al menú</a>
 
     <script>
         function Validacion(event) {
