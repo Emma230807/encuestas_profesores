@@ -29,50 +29,106 @@
         <br>
         <br>
 
-        //Ajustar de acuedo a l informacion obtenida de base de datos
-        <label for="p1">1. El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y
-            congruente.</label>
+        <label id="pregunta"></label>
         <br>
         <br>
 
-        <div class="opciones">
-            <label><input type="radio" name="p1" value="5" required>5</label>
-            <label><input type="radio" name="p1" value="6">6</label>
-            <label><input type="radio" name="p1" value="7">7</label>
-            <label><input type="radio" name="p1" value="8">8</label>
-            <label><input type="radio" name="p1" value="9">9</label>
-            <label><input type="radio" name="p1" value="10">10</label>
+        <div class="opciones" id="contenedor">
+            <label><input type="radio" name="opciones" value="5" required>5</label>
+            <label><input type="radio" name="opciones" value="6">6</label>
+            <label><input type="radio" name="opciones" value="7">7</label>
+            <label><input type="radio" name="opciones" value="8">8</label>
+            <label><input type="radio" name="opciones" value="9">9</label>
+            <label><input type="radio" name="opciones" value="10">10</label>
         </div>
         <br>
 
+        <div id="seccionComentario" style="display: none;">
+            <label for="comentario">Comentario sobre el maestro:</label>
+            <br>
+            <textarea name="comentario" id="comentario"></textarea>
+            <br>
+            <br>
+        </div>
 
-        <label for="comentario">Comentario</label>
-        <textarea name="comentario" id="comentario"></textarea>
-        <br>
-        <br>
-
-        <input type="submit" value="Enviar">
+        <input type="submit" id="btnEnviar" value="Siguiente pregunta">
 
         <script>
+            const preguntas = [
+                "1. El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.",
+                "2. El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.",
+                "3. Propicia un ambiente de confianza y de participación durante la clase."
+            ];
+
+            let numPreg = 0;
+            let respuestasGuardadas = [];
+
+            document.getElementById("pregunta").textContent = preguntas[numPreg];
+
             function guardar(event) {
-                let promedio = 0;
-                let suma = 0;
+                event.preventDefault();
 
-                for (let i = 1; i <= 12; i++) {
-                    let respuesta = document.querySelector('input[name="p' + i + '"]:checked');
+                const seccionComentario = document.getElementById("seccionComentario");
+                const primerRadio = document.querySelector('input[name="opciones"]');
+                
+                if (seccionComentario.style.display === "block") {
+                    document.getElementById("comentario").value = ""; 
+                    
+                    seccionComentario.style.display = "none";
+                    
+                    document.getElementById("contenedor").style.display = "block";
+                    primerRadio.required = true; 
+                    
+                    document.getElementById("btnEnviar").value = "Siguiente pregunta";
+                    
+                    const selectMaestro = document.getElementById("maestro");
+                    let nuevoIndice = selectMaestro.selectedIndex + 1;
 
-                    if (respuesta) {
-                        suma += parseFloat(respuesta.value);
+                    if (nuevoIndice >= selectMaestro.options.length) {
+                        alert("Has evaluado a todos los maestros. Encuesta finalizada.");
+                        document.getElementById("btnEnviar").style.display = "none";
+                        document.getElementById("contenedor").style.display = "none";
+                        document.getElementById("pregunta").textContent = "Encuesta terminada de forma exitosa.";
+                    } else {
+                        selectMaestro.selectedIndex = nuevoIndice;
+                        
+                        document.getElementById("materia").selectedIndex = nuevoIndice; 
+                        
+                        numPreg = 0;
+                        respuestasGuardadas = [];
+                        document.getElementById("pregunta").textContent = preguntas[numPreg];
                     }
+                    return;
                 }
-                promedio = suma / 12;
-                alert(promedio.toFixed(2));
+
+                const seleccionado = document.querySelector('input[name="opciones"]:checked');
+                respuestasGuardadas.push(parseFloat(seleccionado.value));
+                
+                seleccionado.checked = false;
+
+                numPreg++;
+
+                if (numPreg < preguntas.length) {
+                    document.getElementById("pregunta").textContent = preguntas[numPreg];
+                } else {
+                    let suma = respuestasGuardadas.reduce((total, actual) => total + actual, 0);
+                    let promedio = suma / preguntas.length;
+
+                    alert("Tu promedio de evaluación para este maestro es: " + promedio.toFixed(2));
+
+                    document.getElementById("pregunta").textContent = "Por favor, deja un comentario final para este profesor.";
+                    document.getElementById("contenedor").style.display = "none"; 
+                    seccionComentario.style.display = "block"; 
+                    
+                    document.getElementById("btnEnviar").value = "Enviar comentario y continuar";
+                    
+                    primerRadio.required = false; 
+                }
             }
-
-
         </script>
 
     </form>
     <p><a href="../index.html">Volver al menú</a></p>
 </body>
+
 </html>
