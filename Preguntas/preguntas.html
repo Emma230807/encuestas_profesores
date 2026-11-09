@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <title>Registro de preguntas</title>
+</head>
+<body>
+    <h1>Registro de preguntas</h1>
+
+    <form id="preguntaFormulario" onsubmit="guardarPregunta(event)">
+
+        <label for="pregunta">Pregunta:</label><br><br>
+        <textarea id="pregunta" name="pregunta" maxlength="255" rows="3" required></textarea>
+        <br><br>
+
+        <label for="orden">Orden:</label><br><br>
+        <input type="number" id="orden" name="orden" min="1" max="12" required>
+        <br><br>
+
+        <button type="submit">Guardar</button>
+        <button type="reset">Limpiar</button>
+    </form>
+
+    <div class="crud">
+        <table>
+            <caption>Preguntas registradas</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Orden</th>
+                    <th scope="col">Pregunta</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaPreguntas">
+    <tr>
+        <td>1</td>
+        <td>El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.</td>
+        <td>
+            <button type="button" onclick="editarPregunta(this)">Editar</button>
+            <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.</td>
+        <td>
+            <button type="button" onclick="editarPregunta(this)">Editar</button>
+            <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Propicia un ambiente de confianza y de participación durante la clase.</td>
+        <td>
+            <button type="button" onclick="editarPregunta(this)">Editar</button>
+            <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+        </td>
+    </tr>
+</tbody>
+        </table>
+    </div>
+
+    <p><a href="../index.html">Volver al menú</a></p>
+
+    <script src="../Scripts/preguntas.js"></script>
+</body>
+</html>
