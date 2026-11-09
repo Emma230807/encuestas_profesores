@@ -12,7 +12,7 @@
     <h1>Encuesta</h1>
     <form onsubmit="guardar(event)" method="post">
 
-        <input type="text" name="grupo" id="grupo" value="GTID243" readonly>
+        <input type="text" name="grupo" id="grupo" readonly>
 
         <select name="maestro" id="maestro">
             <option value="sustaita">Sustaita</option>
@@ -29,102 +29,92 @@
         <br>
         <br>
 
-        <label id="pregunta"></label>
-        <br>
-        <br>
+                <div id="listaPreguntas"></div>
 
-        <div class="opciones" id="contenedor">
-            <label><input type="radio" name="opciones" value="5" required>5</label>
-            <label><input type="radio" name="opciones" value="6">6</label>
-            <label><input type="radio" name="opciones" value="7">7</label>
-            <label><input type="radio" name="opciones" value="8">8</label>
-            <label><input type="radio" name="opciones" value="9">9</label>
-            <label><input type="radio" name="opciones" value="10">10</label>
-        </div>
-        <br>
-
-        <div id="seccionComentario" style="display: none;">
-            <label for="comentario">Comentario sobre el maestro:</label>
+        <div id="seccionComentario">
+            <label for="comentario">Comentario sobre el maestro (opcional):</label>
             <br>
-            <textarea name="comentario" id="comentario"></textarea>
+            <textarea name="comentario" id="comentario" maxlength="500"></textarea>
             <br>
             <br>
         </div>
 
-        <input type="submit" id="btnEnviar" value="Siguiente pregunta">
+        <input type="submit" id="btnEnviar" value="Enviar y continuar">
 
         <script>
+            const grupoAlumno = sessionStorage.getItem("grupo");
+            if (!grupoAlumno) {
+                window.location.href = "acceso.html";
+}
+document.getElementById("grupo").value = grupoAlumno;
             const preguntas = [
                 "1. El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.",
                 "2. El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.",
                 "3. Propicia un ambiente de confianza y de participación durante la clase."
-                
+                // agrega aquí las demás hasta las 12
             ];
 
-            let numPreg = 0;
-            let respuestasGuardadas = [];
+            const contenedor = document.getElementById("listaPreguntas");
 
-            document.getElementById("pregunta").textContent = preguntas[numPreg];
+            preguntas.forEach(function (texto, i) {
+                const bloque = document.createElement("div");
+
+                const etiqueta = document.createElement("label");
+                etiqueta.textContent = texto;
+                bloque.appendChild(etiqueta);
+                bloque.appendChild(document.createElement("br"));
+                bloque.appendChild(document.createElement("br"));
+
+                const opciones = document.createElement("div");
+                opciones.className = "opciones";
+
+                for (let valor = 5; valor <= 10; valor++) {
+                    const opcion = document.createElement("label");
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    radio.name = "p" + i;
+                    radio.value = valor;
+                    radio.required = true;
+                    opcion.appendChild(radio);
+                    opcion.appendChild(document.createTextNode(valor));
+                    opciones.appendChild(opcion);
+                }
+
+                bloque.appendChild(opciones);
+                bloque.appendChild(document.createElement("br"));
+                contenedor.appendChild(bloque);
+            });
 
             function guardar(event) {
                 event.preventDefault();
 
-                const seccionComentario = document.getElementById("seccionComentario");
-                const primerRadio = document.querySelector('input[name="opciones"]');
-                
-                if (seccionComentario.style.display === "block") {
-                    document.getElementById("comentario").value = ""; 
-                    
-                    seccionComentario.style.display = "none";
-                    
-                    document.getElementById("contenedor").style.display = "block";
-                    primerRadio.required = true; 
-                    
-                    document.getElementById("btnEnviar").value = "Siguiente pregunta";
-                    
-                    const selectMaestro = document.getElementById("maestro");
-                    let nuevoIndice = selectMaestro.selectedIndex + 1;
+                let suma = 0;
+                for (let i = 0; i < preguntas.length; i++) {
+                    const seleccionado = document.querySelector('input[name="p' + i + '"]:checked');
+                    suma += Number(seleccionado.value);
+                }
 
-                    if (nuevoIndice >= selectMaestro.options.length) {
-                        alert("Has evaluado a todos los maestros. Encuesta finalizada.");
-                        document.getElementById("btnEnviar").style.display = "none";
-                        document.getElementById("contenedor").style.display = "none";
-                        document.getElementById("pregunta").textContent = "Encuesta terminada de forma exitosa.";
-                    } else {
-                        selectMaestro.selectedIndex = nuevoIndice;
-                        
-                        document.getElementById("materia").selectedIndex = nuevoIndice; 
-                        
-                        numPreg = 0;
-                        respuestasGuardadas = [];
-                        document.getElementById("pregunta").textContent = preguntas[numPreg];
-                    }
+                const promedio = suma / preguntas.length;
+                alert("Tu promedio de evaluación para este maestro es: " + promedio.toFixed(2));
+
+                const selectMaestro = document.getElementById("maestro");
+                const nuevoIndice = selectMaestro.selectedIndex + 1;
+
+                if (nuevoIndice >= selectMaestro.options.length) {
+                    alert("Has evaluado a todos los maestros. Encuesta finalizada.");
+                    document.getElementById("listaPreguntas").textContent = "Encuesta terminada de forma exitosa.";
+                    document.getElementById("seccionComentario").style.display = "none";
+                    document.getElementById("btnEnviar").style.display = "none";
                     return;
                 }
 
-                const seleccionado = document.querySelector('input[name="opciones"]:checked');
-                respuestasGuardadas.push(parseFloat(seleccionado.value));
-                
-                seleccionado.checked = false;
-
-                numPreg++;
-
-                if (numPreg < preguntas.length) {
-                    document.getElementById("pregunta").textContent = preguntas[numPreg];
-                } else {
-                    let suma = respuestasGuardadas.reduce((total, actual) => total + actual, 0);
-                    let promedio = suma / preguntas.length;
-
-                    alert("Tu promedio de evaluación para este maestro es: " + promedio.toFixed(2));
-
-                    document.getElementById("pregunta").textContent = "Por favor, deja un comentario final para este profesor.";
-                    document.getElementById("contenedor").style.display = "none"; 
-                    seccionComentario.style.display = "block"; 
-                    
-                    document.getElementById("btnEnviar").value = "Enviar comentario y continuar";
-                    
-                    primerRadio.required = false; 
-                }
+                selectMaestro.selectedIndex = nuevoIndice;
+                document.getElementById("materia").selectedIndex = nuevoIndice;
+                document.getElementById("comentario").value = "";
+                document.querySelectorAll('#listaPreguntas input[type="radio"]').forEach(function (r) {
+                    r.checked = false;
+                });
+                window.scrollTo(0, 0);
             }
         </script>
 

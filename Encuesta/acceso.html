@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <title>Acceso alumno</title>
+</head>
+<body>
+    <h1>Acceso alumno</h1>
+
+    <form id="accesoFormulario" onsubmit="comenzarEncuesta(event)">
+        <label for="grupo">Selecciona tu grupo:</label><br><br>
+        <select id="grupo" name="grupo" required>
+            <option value="">Seleccione un grupo</option>
+            <option value="GTID243">GTID243</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Comenzar encuesta</button>
+    </form>
+
+    <p><a href="../index.html">Volver al menú</a></p>
+
+    <script src="../Scripts/acceso.js"></script>
+</body>
+</html>
