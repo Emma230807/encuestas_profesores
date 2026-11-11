@@ -15,10 +15,6 @@
         <textarea id="pregunta" name="pregunta" maxlength="255" rows="3" required></textarea>
         <br><br>
 
-        <label for="orden">Orden:</label><br><br>
-        <input type="number" id="orden" name="orden" min="1" max="12" required>
-        <br><br>
-
         <button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
     </form>
@@ -28,14 +24,12 @@
             <caption>Preguntas registradas</caption>
             <thead>
                 <tr>
-                    <th scope="col">Orden</th>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody id="tablaPreguntas">
     <tr>
-        <td>1</td>
         <td>El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.</td>
         <td>
             <button type="button" onclick="editarPregunta(this)">Editar</button>
@@ -43,7 +37,6 @@
         </td>
     </tr>
     <tr>
-        <td>2</td>
         <td>El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.</td>
         <td>
             <button type="button" onclick="editarPregunta(this)">Editar</button>
@@ -51,7 +44,6 @@
         </td>
     </tr>
     <tr>
-        <td>3</td>
         <td>Propicia un ambiente de confianza y de participación durante la clase.</td>
         <td>
             <button type="button" onclick="editarPregunta(this)">Editar</button>

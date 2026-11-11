@@ -11,7 +11,6 @@ function guardarPregunta(event) {
     }
 
     const texto = document.getElementById("pregunta").value.trim();
-    const orden = document.getElementById("orden").value;
     const tabla = document.getElementById("tablaPreguntas");
 
     if (texto === "") {
@@ -24,17 +23,7 @@ function guardarPregunta(event) {
         return;
     }
 
-    for (const fila of tabla.rows) {
-        if (fila.cells[0].textContent === orden) {
-            alert("Ya existe una pregunta con ese orden.");
-            return;
-        }
-    }
-
     const fila = document.createElement("tr");
-
-    const celdaOrden = document.createElement("td");
-    celdaOrden.textContent = orden;
 
     const celdaPregunta = document.createElement("td");
     celdaPregunta.textContent = texto;
@@ -58,33 +47,18 @@ function guardarPregunta(event) {
     celdaAcciones.appendChild(botonEditar);
     celdaAcciones.appendChild(botonEliminar);
 
-    fila.appendChild(celdaOrden);
     fila.appendChild(celdaPregunta);
     fila.appendChild(celdaAcciones);
 
     tabla.appendChild(fila);
-    ordenarTabla();
 
     formulario.reset();
     alert("Pregunta registrada correctamente.");
 }
 
-function ordenarTabla() {
-    const tabla = document.getElementById("tablaPreguntas");
-    const filas = Array.from(tabla.rows);
-
-    filas.sort(function (a, b) {
-        return Number(a.cells[0].textContent) - Number(b.cells[0].textContent);
-    });
-
-    filas.forEach(function (fila) {
-        tabla.appendChild(fila);
-    });
-}
-
 function editarPregunta(boton) {
     const fila = boton.closest("tr");
-    const celda = fila.cells[1];
+    const celda = fila.cells[0];
 
     const nuevoTexto = prompt("Ingresa el nuevo texto de la pregunta:", celda.textContent);
 
