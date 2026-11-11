@@ -45,13 +45,12 @@
             const grupoAlumno = sessionStorage.getItem("grupo");
             if (!grupoAlumno) {
                 window.location.href = "acceso.html";
-}
-document.getElementById("grupo").value = grupoAlumno;
+            }
+            document.getElementById("grupo").value = grupoAlumno;
             const preguntas = [
                 "1. El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y congruente.",
                 "2. El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.",
                 "3. Propicia un ambiente de confianza y de participación durante la clase."
-                // agrega aquí las demás hasta las 12
             ];
 
             const contenedor = document.getElementById("listaPreguntas");
@@ -95,7 +94,7 @@ document.getElementById("grupo").value = grupoAlumno;
                 }
 
                 const promedio = suma / preguntas.length;
-                alert("Tu promedio de evaluación para este maestro es: " + promedio.toFixed(2));
+                 alert("Evaluación enviada correctamente.");
 
                 const selectMaestro = document.getElementById("maestro");
                 const nuevoIndice = selectMaestro.selectedIndex + 1;
