@@ -1,3 +1,4 @@
+
 function comenzarEncuesta(event) {
     event.preventDefault();
 
@@ -10,12 +11,12 @@ function comenzarEncuesta(event) {
 
     const grupo = document.getElementById("grupo").value;
 
-    // cveAlumno autoincremental
+    // cveAlumno autoincremental local
     const cveAlumno = Number(localStorage.getItem("cveAlumno") || 0) + 1;
     localStorage.setItem("cveAlumno", cveAlumno);
 
     sessionStorage.setItem("grupo", grupo);
     sessionStorage.setItem("cveAlumno", cveAlumno);
 
-    window.location.href = "encuesta.html";
+    window.location.href = formulario.dataset.url;
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Gestion de Materias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Estilos/estilos.css') }}">
+</head>
+<body>
+    <div class="crud">
+        <table>
+            <caption>Materias registradas</caption>
+
+            <thead>
+                <tr>
+                    <th scope="col">Nombre de la materia</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaMaterias">
+                <tr>
+                    <td>Materia</td>
+                    <td>
+                        <button type="button" onclick="editarMateria(this)">
+                            Editar
+                        </button>
+
+                        <button type="button" onclick="eliminarMateria(this)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

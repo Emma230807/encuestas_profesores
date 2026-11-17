@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Estilos/estilos.css') }}">
+    <style>
+        body{
+            margin: 0;
+            height: 80vh; 
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+            flex-direction: column; 
+        }
+
+        .tarjetaInicio {
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 90%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tarjetaInicio">
+        <h2>Bienvenido</h2>
+    </div>
+
+</body>
+
+</html>

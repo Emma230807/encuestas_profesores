@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Estilos/estilos.css') }}">
     <title>Registro Profesor</title>
 </head>
 
 <body>
-    <h2>Registro Profesor</h2>
 
     <form id="profesorFormulario" onsubmit="verficacion()">
-
+        <h1>Registro Profesor</h1>
         <!--Numero de empleado-->
         <label for="clave">Clave de empleado:</label><br><br>
         <input type="text" id="clave" name="clave" minlength="1" maxlength="20" pattern="[0-9]+" required>
@@ -42,34 +41,11 @@
         <button type="reset">Limpiar</button>
     </form>
 
-    <div class="crud">
-        <table>
-            <caption>Profesores</caption>
-            <thead>
-                <tr>
-                    <th>Numero de Emleado</th>
-                    <th>Profesor</th>
-                    <th>Correo</th>
-                </tr>
-
-            </thead>
-            <tr>
-                <th>2009</th>
-                <th>Ricardo Muro Gómez</th>
-                <th>ricardomurog4@gmail.com</th>
-            </tr>
-        </table>
-        <button>Editar</button>
-        <button>Eliminar</button>
-    </div>
-    
     <script>
         function verficacion(event) {
             alert("Profesor registrado correctamente");
         }
     </script>
-
-    <p><a href="../index.html">Volver al menú</a></p>
 
 </body>
 

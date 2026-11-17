@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Gestion de Preguntas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Estilos/estilos.css') }}">
+</head>
+<body>
+    <div class="crud">
+        <table>
+            <caption>Preguntas registradas</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Pregunta</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaPreguntas">
+                <tr>
+                    <td>El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y
+                        congruente.</td>
+                    <td>
+                        <button type="button" onclick="editarPregunta(this)">Editar</button>
+                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.</td>
+                    <td>
+                        <button type="button" onclick="editarPregunta(this)">Editar</button>
+                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Propicia un ambiente de confianza y de participación durante la clase.</td>
+                    <td>
+                        <button type="button" onclick="editarPregunta(this)">Editar</button>
+                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../Scripts/preguntas.js"></script>
+</body>
+</html>

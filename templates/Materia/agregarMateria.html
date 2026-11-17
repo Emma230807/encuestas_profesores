@@ -5,53 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materias</title>
-    <link rel="stylesheet" href="../Estilos/estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Estilos/estilos.css') }}">
 </head>
 
 <body>
 
-        <h1>Registro de materias</h1>
+    <h1>Registro de materias</h1>
 
-        <form id="materiaFormulario" onsubmit="Validacion(event)">
-            <label for="materia">Nombre de la materia:</label>
+    <form id="materiaFormulario" onsubmit="Validacion(event)">
+        <label for="materia">Nombre de la materia:</label>
 
-            <input type="text" id="materia" name="materia" maxlength="100" required
-                pattern="[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*">
+        <input type="text" id="materia" name="materia" maxlength="100" required
+            pattern="[A-ZÁÉÍÓÚÜÑ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]*( [A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*">
 
-            <br><br>
+        <br><br>
 
-            <button type="submit">Guardar</button>
-        </form>
-
-
-    <div class="crud">
-        <table>
-            <caption>Materias registradas</caption>
-
-            <thead>
-                <tr>
-                    <th scope="col">Nombre de la materia</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody id="tablaMaterias">
-                <tr>
-                    <td>Materia</td>
-                    <td>
-                        <button type="button" onclick="editarMateria(this)">
-                            Editar
-                        </button>
-
-                        <button type="button" onclick="eliminarMateria(this)">
-                            Eliminar
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <a href="../index.html">Volver al menú</a>
+        <button type="submit">Guardar</button>
+    </form>
 
     <script>
         function Validacion(event) {
