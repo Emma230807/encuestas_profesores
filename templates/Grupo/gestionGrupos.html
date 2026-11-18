@@ -17,10 +17,12 @@
                 </tr>
             </thead>
             <tbody>
+             {% for grupo in grupos %}
                 <tr>
-                    <th>GTID243</th>
-                    <th>19</th>
+                    <td>{{ grupo[0] }}</td>
+                    <td>{{ grupo[1] }}</td>
                 </tr>
+              {% endfor %}  
             </tbody>
         </table>
         <button>Editar</button>

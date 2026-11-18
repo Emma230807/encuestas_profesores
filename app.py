@@ -2,6 +2,14 @@ from flask import Flask, request
 from flask import render_template
 app = Flask(__name__)
 import mssql_python
+cadenaConexion=(
+    "Server=localhost;"
+    "Database=BD_Encuestas;"
+    "Trusted_Connection=yes;"
+    "TrustServerCertificate=yes;"
+)
+def get_conexion():
+    return mssql_python.connect(cadenaConexion)
 
 @app.route("/seap")
 def Inicio():
@@ -15,10 +23,37 @@ def inicioS1():
 @app.route("/seap/agregarGrupo")
 def agregarGrupo():
     return render_template("Grupo/agregarGrupo.html")
+@app.route("/seap/guardarGrupo",methods=['POST'])
+def guardarGrupo():
+    cveGru=request.form.get('cveGru')
+    numAlumnos=int(request.form.get('numAlu'))
+    mensaje=""
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute('Select * from Grupos where cveGru=?',(cveGru,))
+    clave=cursor.fetchone()
+    if(clave is None):
+     cursor.execute("Insert into Grupos(cveGru,numAlumnos)values(?,?)",(cveGru,numAlumnos))
+     conexion.commit()
+     cursor.close()
+     conexion.close() 
+     mensaje="Grupo agregado exitosamente"
+     
+    else:
+        mensaje="Clave repetida intenta otra" 
+    return render_template('Grupo/agregarGrupo.html',mensaje=mensaje)       
+
+    
 
 @app.route("/seap/gestionGrupos")
 def gestionGrupos():
-    return render_template("Grupo/gestionGrupos.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select * from Grupos")
+    grupos=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Grupo/gestionGrupos.html",grupos=grupos)
 
 #---------------Profesor
 @app.route("/seap/agregarProfesor")

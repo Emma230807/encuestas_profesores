@@ -9,24 +9,25 @@
 </head>
 
 <body>
-    <form onsubmit="verificar()">
+    <form action="guardarGrupo" method="POST">
+        {% if mensaje %}
+            <script>
+                alert("{{mensaje}}")
+            </script>
+        {% endif %}    
         <h1>Grupo Nuevo</h1>
         <label for="cveGru">Clave de grupo:</label>
-        <input type="text" id="cveGru" maxlength="7" pattern="[A-Z]{4}[0-9]{3}" required>
+        <input type="text" id="cveGru" name="cveGru" maxlength="7" pattern="[A-Z]{4}[0-9]{3}" required>
         <br><br>
         <label for="numAlu">Numero de alumnos:</label>
-        <input type="number" id="numAlu" min="1" max="99" required>
+        <input type="number" id="numAlu" name="numAlu" min="1" max="99" required>
         <br><br>
         <button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
 
     </form>
 
-    <script>
-        function verificar() {
-            alert("El grupo se registro exitosamente");
-        }
-    </script>
+  
 </body>
 
 </html>
