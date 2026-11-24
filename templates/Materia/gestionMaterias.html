@@ -13,14 +13,21 @@
 
             <thead>
                 <tr>
+                    <th scope="col">Clave Materia</th>
                     <th scope="col">Nombre de la materia</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
 
             <tbody id="tablaMaterias">
+                 {% for mat in materias%}
                 <tr>
-                    <td>Materia</td>
+                    <td>
+                        {{ mat[0] }}
+                    </td>
+                    <td>
+                       {{ mat[1] }}
+                    </td>
                     <td>
                         <button type="button" onclick="editarMateria(this)">
                             Editar
@@ -31,6 +38,7 @@
                         </button>
                     </td>
                 </tr>
+                {% endfor %}  
             </tbody>
         </table>
     </div>

@@ -10,7 +10,12 @@
 
 <body>
 
-    <form id="profesorFormulario" onsubmit="verficacion()">
+    <form id="profesorFormulario" action="/seap/guardarPro" method="POST">
+        {% if mensaje %}
+            <script>
+                alert("{{mensaje}}")
+            </script>
+        {% endif %}  
         <h1>Registro Profesor</h1>
         <!--Numero de empleado-->
         <label for="clave">Clave de empleado:</label><br><br>
@@ -41,12 +46,7 @@
         <button type="reset">Limpiar</button>
     </form>
 
-    <script>
-        function verficacion(event) {
-            alert("Profesor registrado correctamente");
-        }
-    </script>
-
+  
 </body>
 
 </html>

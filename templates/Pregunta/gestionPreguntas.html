@@ -10,39 +10,39 @@
     <div class="crud">
         <table>
             <caption>Preguntas registradas</caption>
+
             <thead>
                 <tr>
-                    <th scope="col">Pregunta</th>
+                    <th scope="col">Clave Pregunta</th>
+                    <th scope="col">Contenido</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody id="tablaPreguntas">
+
+            <tbody id="tablaPre">
+                 {% for pre in preguntas%}
                 <tr>
-                    <td>El profesor expone los contenidos y prácticas de su asignatura de manera clara, gradual y
-                        congruente.</td>
                     <td>
-                        <button type="button" onclick="editarPregunta(this)">Editar</button>
-                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
+                        {{ pre[0] }}
+                    </td>
+                    <td>
+                       {{ pre[1] }}
+                    </td>
+                    <td>
+                        <button type="button" onclick="editarMateria(this)">
+                            Editar
+                        </button>
+
+                        <button type="button" onclick="eliminarMateria(this)">
+                            Eliminar
+                        </button>
                     </td>
                 </tr>
-                <tr>
-                    <td>El profesor proporciona orientación y apoyo a los alumnos con problemas de aprendizaje.</td>
-                    <td>
-                        <button type="button" onclick="editarPregunta(this)">Editar</button>
-                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Propicia un ambiente de confianza y de participación durante la clase.</td>
-                    <td>
-                        <button type="button" onclick="editarPregunta(this)">Editar</button>
-                        <button type="button" onclick="eliminarPregunta(this)">Eliminar</button>
-                    </td>
-                </tr>
+                {% endfor %}  
             </tbody>
         </table>
     </div>
 
-    <script src="../Scripts/preguntas.js"></script>
+  
 </body>
 </html>

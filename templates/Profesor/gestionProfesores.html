@@ -9,20 +9,23 @@
 <body>
     <div class="crud">
         <table>
-            <caption>Profesores</caption>
+            <h1>Profesores</h1>
             <thead>
                 <tr>
-                    <th>Numero de Emleado</th>
-                    <th>Profesor</th>
+                    <th>Clave Profesor</th>
+                    <th>Nombre Completo</th>
                     <th>Correo</th>
                 </tr>
-
             </thead>
-            <tr>
-                <th>2009</th>
-                <th>Ricardo Muro Gómez</th>
-                <th>ricardomurog4@gmail.com</th>
-            </tr>
+            <tbody>
+             {% for profesor in profesores %}
+                <tr>
+                    <td>{{ profesor[0] }}</td>
+                    <td>{{ profesor[1] }}</td>
+                    <td>{{ profesor[2] }}</td>
+                </tr>
+              {% endfor %}  
+            </tbody>
         </table>
         <button>Editar</button>
         <button>Eliminar</button>

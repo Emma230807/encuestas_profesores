@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask import render_template
 app = Flask(__name__)
 import mssql_python
+from datetime import date, time
 cadenaConexion=(
     "Server=localhost;"
     "Database=BD_Encuestas;"
@@ -35,12 +36,12 @@ def guardarGrupo():
     if(clave is None):
      cursor.execute("Insert into Grupos(cveGru,numAlumnos)values(?,?)",(cveGru,numAlumnos))
      conexion.commit()
-     cursor.close()
-     conexion.close() 
      mensaje="Grupo agregado exitosamente"
      
     else:
         mensaje="Clave repetida intenta otra" 
+    cursor.close()
+    conexion.close()     
     return render_template('Grupo/agregarGrupo.html',mensaje=mensaje)       
 
     
@@ -59,19 +60,64 @@ def gestionGrupos():
 @app.route("/seap/agregarProfesor")
 def agregarProfesor():
     return render_template("Profesor/agregarProfesor.html")
+@app.route("/seap/guardarPro",methods=['POST'])
+def guardarPro():
+    cvePro=request.form.get('clave')
+    nomPro=request.form.get('nombre')
+    apPaterno=request.form.get('apellidoPaterno')
+    apMaterno=request.form.get('apellidoMaterno')
+    correo=request.form.get('correo')
+    mensaje=""
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select * from Profesor where cvePro=?",(cvePro,))
+    clave=cursor.fetchone()
+    if(clave is None):
+        cursor.execute("Insert into Profesor(cvePro,nomPro,apPaterno,apMaterno,correo)values(?,?,?,?,?)",(cvePro,nomPro,apPaterno,apMaterno,correo))
+        conexion.commit()
+        mensaje="Profesor agregado correctamente"
+    else:
+        mensaje="Clave repetida intenta otra"
+    cursor.close()
+    conexion.close()     
+    return render_template("Profesor/agregarProfesor.html",mensaje=mensaje)    
+
 
 @app.route("/seap/gestionProfesores")
 def gestionProfesores():
-    return render_template("Profesor/gestionProfesores.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select cvePro, CONCAT(nomPro, ' ', apPaterno, ' ', apMaterno) AS nombreCompleto, correo from Profesor")
+    profesores=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Profesor/gestionProfesores.html",profesores=profesores)
 
 #---------------Materia
 @app.route("/seap/agregarMateria")
 def agregarMateria():
     return render_template("Materia/agregarMateria.html")
+@app.route("/seap/guardarMat",methods=['POST'])
+def guardarMat():
+    nomMat=request.form.get('materia')
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Insert into Materia(nomMat) values(?)",(nomMat,))
+    conexion.commit()
+    mensaje="Materia agregada correctamente"
+    cursor.close()
+    conexion.close()
+    return render_template("Materia/agregarMateria.html",mensaje=mensaje)
 
 @app.route("/seap/gestionMaterias")
 def gestionMaterias():
-    return render_template("Materia/gestionMaterias.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select * from Materia")
+    materias=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Materia/gestionMaterias.html",materias=materias)
 
 #---------------Asignacion
 @app.route("/seap/agregarAsignacion")
@@ -82,15 +128,66 @@ def agregarAsignacion():
 @app.route("/seap/agregarPregunta")
 def agregarPregunta():
     return render_template("Pregunta/agregarPregunta.html")
+@app.route("/seap/guardarPre", methods=['POST'])
+def guardarPre():
+    pregunta=request.form.get('pregunta')
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Insert into Pregunta(pregunta) values(?)",(pregunta,))
+    conexion.commit()
+    mensaje="Pregunta agregada correctamente"
+    cursor.close()
+    conexion.close()
+    return render_template("Pregunta/agregarPregunta.html",mensaje=mensaje)
+
 
 @app.route("/seap/gestionPreguntas")
 def gestionPreguntas():
-    return render_template("Pregunta/gestionPreguntas.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select * from Pregunta")
+    preguntas=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Pregunta/gestionPreguntas.html",preguntas=preguntas)
 
 #---------------Sesion
 @app.route("/seap/agregarSesion")
 def agregarSesion():
-    return render_template("Sesion/agregarSesion.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select * from Grupos")
+    grupos=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Sesion/agregarSesion.html",grupos=grupos)
+@app.route("/seap/guardarSesion", methods=['POST'])
+def guardarSesion():
+    cveGru=request.form.get('grupo')
+    fecha = date.fromisoformat(request.form.get('fecha'))
+    horaInicio = time.fromisoformat(request.form.get('horaInicio'))
+    horaFin = time.fromisoformat(request.form.get('horaFin'))
+    mensaje=""
+    conexion=get_conexion()
+    cursor=conexion.cursor()   
+    cursor.execute("Select * from Grupos")
+    grupos=cursor.fetchall()
+
+    if(horaInicio>=horaFin):
+        mensaje="ERROR; La hora de inicio no puede ser mayor que la hora fin"
+    else:
+        
+        cursor.execute("Insert into Sesiones(cveGru,fecha,horaInicio,horaFin) values(?,?,?,?)",(cveGru,fecha,horaInicio,horaFin))
+        conexion.commit()
+        mensaje="Sesion registrada correctamnete"
+    cursor.close()
+    conexion.close()     
+    return render_template("Sesion/agregarSesion.html",mensaje=mensaje,grupos=grupos)
+        
+
+@app.route("/seap/gestionSesion")
+def gestionSesion():
+    return render_template("/Sesion/gestionSesion.html")
 
 #---------------Reporte
 @app.route("/seap/generarReporte")

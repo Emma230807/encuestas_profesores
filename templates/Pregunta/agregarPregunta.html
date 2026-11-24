@@ -11,8 +11,12 @@
 <body>
     <h1>Registro de preguntas</h1>
 
-    <form id="preguntaFormulario" onsubmit="guardarPregunta(event)">
-
+    <form id="preguntaFormulario" action="/seap/guardarPre" method="post">
+        {% if mensaje %}
+            <script>
+                alert("{{mensaje}}")
+            </script>
+        {% endif %}  
         <label for="pregunta">Pregunta:</label><br><br>
         <textarea id="pregunta" name="pregunta" maxlength="255" rows="3" required></textarea>
         <br><br>
@@ -21,7 +25,6 @@
         <button type="reset">Limpiar</button>
     </form>
 
-    <script src="../Scripts/preguntas.js"></script>
 </body>
 
 </html>

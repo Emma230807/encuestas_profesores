@@ -8,10 +8,18 @@
 </head>
 <body>
     <h1>Programar sesiones</h1>
-    <form id="sesionFormulario" onsubmit="validarSesion(event)">
+    <form id="sesionFormulario" action="/seap/guardarSesion" method="POST">
+        {% if mensaje %}
+            <script>
+                alert("{{mensaje}}")
+            </script>
+        {% endif %}  
         <label for="grupo">Grupo:</label><br><br>
         <select id="grupo" name="grupo" required>
             <option value="">Seleccione un grupo</option>
+            {% for grupo in grupos %}
+            <option value="{{ grupo[0] }}">{{ grupo[0] }}</option>
+            {% endfor %}
         </select>
         <br><br>
         <label for="fecha">Fecha:</label><br><br>
@@ -26,6 +34,6 @@
         <button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
     </form>
-    <script src="../Scripts/sesiones.js"></script>
+    
 </body>
 </html>
