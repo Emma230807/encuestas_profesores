@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, redirect, url_for
 from flask import render_template
 app = Flask(__name__)
 import mssql_python
@@ -239,10 +239,57 @@ def generarReporte():
     return render_template("Reporte/generarReporte.html")
 
 #---------------Encuesta
-@app.route("/encuesta")
+@app.route("/encuesta", methods = ['GET','POST'])
 def encuesta():
-    return render_template("Encuesta/acceso.html")
+    conexion = get_conexion()
+    cursor = conexion.cursor()
+    cursor.execute('Select * from Grupos')
+    grupos = cursor.fetchall()
 
-@app.route("/responderEncuesta")
+    cursor.close()
+    conexion.close()
+    return render_template("Encuesta/acceso.html", grupos = grupos)
+
+@app.route("/responderEncuesta", methods = ['GET','POST'])
 def responderEncuesta():
-    return render_template("Encuesta/encuesta.html")
+    conexion = get_conexion()
+    cursor = conexion.cursor()
+    cursor.execute("select  a.cveAsignacion, CONCAT(p.nomPro,' ',p.apPaterno,' ',p.apMaterno,' ') as nombreCompleto , a.cveGru, m.nomMat, p.cvePro from Asigna as a inner join Profesor as p on a.cvePro=p.cvePro inner join Materia as m on a.cveMat=m.cveMat where cveGru = 'GTID243'")
+    asignasiones = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    return render_template("Encuesta/encuesta.html", asignasiones = asignasiones)
+
+@app.route("/validarSesion", methods=['POST'])
+def validarSesion():
+    conexion = get_conexion()
+    cursor = conexion.cursor()
+
+    cveGru = request.form.get('grupo')
+
+    cursor.execute("""
+        Select * From Sesiones
+        Where cveGru = ?
+        And fecha = Cast(GetDate() As Date)
+        And horaInicio <= Cast(GetDate() As Time)
+        And horaFin > Cast(GetDate() As Time)
+    """, (cveGru,))
+
+    sesion = cursor.fetchone()
+
+    if sesion:
+        cursor.close()
+        conexion.close()
+        return redirect(url_for('responderEncuesta'))
+
+    cursor.execute('Select * From Grupos')
+    grupos = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    return render_template("Encuesta/acceso.html",
+                           grupos=grupos,
+                           mensaje="No hay una sesión activa para este grupo")

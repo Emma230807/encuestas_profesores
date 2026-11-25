@@ -11,21 +11,41 @@
 <body>
     <h1>Acceso alumno</h1>
 
-    <form id="accesoFormulario" onsubmit="comenzarEncuesta(event)" data-url="{{ url_for('responderEncuesta') }}">
+    {% if mensaje %}
+        <div id="alerta" data-mensaje="{{ mensaje }}"></div>
+
+        <script>
+            alert(document.getElementById("alerta").dataset.mensaje);
+        </script>
+    {% endif %}
+
+    <form id="accesoFormulario" method="POST"
+          action="/validarSesion" onsubmit="comenzarEncuesta()">
 
         <label for="grupo">Selecciona tu grupo:</label><br><br>
+
         <select id="grupo" name="grupo" required>
             <option value="">Seleccione un grupo</option>
-            <option value="GTID243">GTID243</option>
+
+            {% for g in grupos %}
+                <option value="{{ g.cveGru }}">{{ g.cveGru }}</option>
+            {% endfor %}
         </select>
+
         <br><br>
 
         <button type="submit">Comenzar encuesta</button>
+
     </form>
 
-    <p><a href="{{ url_for('Inicio') }}">Volver al menú</a></p>
+    <script>
+        function comenzarEncuesta() {
+            const grupo = document.getElementById("grupo").value;
 
-    <script src="{{ url_for('static', filename='Scripts/acceso.js') }}"></script>
+            sessionStorage.setItem("grupo", grupo);
+            sessionStorage.setItem("encuestaPendiente", "true");
+        }
+    </script>
 </body>
 
 </html>

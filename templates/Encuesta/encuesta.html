@@ -15,15 +15,17 @@
         <input type="text" name="grupo" id="grupo" readonly>
 
         <select name="maestro" id="maestro">
-            <option value="sustaita">Sustaita</option>
-            <option value="muro">Muro</option>
-            <option value="tacho">Tacho</option>
+            <option value="">Seleccione un Profesor</option>
+            {% for p in asignasiones %}
+                <option value="{{p.cvePro}}">{{p.nombreCompleto}}</option>
+            {% endfor%}
         </select>
 
         <select name="materia" id="materia">
-            <option value="poo">POO</option>
-            <option value="bdd">BDD</option>
-            <option value="movil">Movil</option>
+            <option value="">Seleccione una materia</option>
+            {% for m in asignasiones %}
+                <option value="{{m.cveMat}}">{{m.nomMat}}</option>
+            {% endfor%}
         </select>
 
         <br>
