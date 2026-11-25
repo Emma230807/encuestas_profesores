@@ -9,29 +9,37 @@
 <body>
     <h1>Asignación de profesores</h1>
     
-    <form id="asignacionFormulario" onsubmit="validarAsignacion(event)">
-
+    <form id="asignacionFormulario" onsubmit="validarAsignacion(event)" action="guardarAsig" method="POST">
+        {% if mensaje %}
+            <script>
+                alert("{{mensaje}}")
+            </script>
+        {% endif %}  
         <label for="profesor">Profesor:</label><br><br>
         <label for="profesor">Profesor:</label>
-        <select id="profesor" required>
+        <select id="profesor" name="profesor" required>
         <option value="">Seleccione un profesor</option>
-        <option value="1">Ricardo Muro Gomez</option>
-        <option value="2">Maria Teresa Diaz Robledo</option>
+        {% for pro in profesores %}
+        <option value="{{ pro[0] }}">{{ pro[1] }}</option>
+        {% endfor %}
         </select>
         <br><br>
 
         <label for="grupo">Grupo:</label><br><br>
         <select id="grupo" name="grupo" required>
             <option value="">Seleccione un grupo</option>
-            <option value="1">GTID243</option>
+            {% for grupo in grupos %}
+            <option value="{{ grupo[0] }}">{{ grupo[0] }}</option>
+            {% endfor %}
         </select>
         <br><br>
 
         <label for="materia">Materia:</label><br><br>
         <select id="materia" name="materia" required>
             <option value="">Seleccione una materia</option>
-             <option value="1">Aplicaciones WEB</option>
-            <option value="2">Analisis y Diseño de Software</option>
+            {% for mat in materias %}
+            <option value="{{ mat[0] }}">{{ mat[1] }}</option>
+            {% endfor %}
         </select>
         <br><br>
 

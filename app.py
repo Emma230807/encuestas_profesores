@@ -122,8 +122,46 @@ def gestionMaterias():
 #---------------Asignacion
 @app.route("/seap/agregarAsignacion")
 def agregarAsignacion():
-    return render_template("Asignacion/agregarAsignacion.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select cvePro, CONCAT(nomPro, ' ', apPaterno, ' ', apMaterno) AS nombreCompleto from Profesor")
+    profesores=cursor.fetchall()
+    cursor.execute("Select cveGru from Grupos")
+    grupos=cursor.fetchall()
+    cursor.execute("Select * from Materia")
+    materias=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Asignacion/agregarAsignacion.html",profesores=profesores,grupos=grupos,materias=materias)
+@app.route("/seap/guardarAsig", methods=['POST'])
+def guardarAsig():
+    cvePro=request.form.get('profesor')
+    cveGru=request.form.get('grupo')
+    cveMat=request.form.get('materia')
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("Select cvePro, CONCAT(nomPro, ' ', apPaterno, ' ', apMaterno) AS nombreCompleto from Profesor")
+    profesores=cursor.fetchall()
+    cursor.execute("Select cveGru from Grupos")
+    grupos=cursor.fetchall()
+    cursor.execute("Select * from Materia")
+    materias=cursor.fetchall()
+    cursor.execute("Insert into Asigna(cveGru,cveMat,cvePro) values(?,?,?)",(cveGru,cveMat,cvePro,))
+    conexion.commit()
+    mensaje="Datos guardados correctamente"
+    cursor.close()
+    conexion.close()
+    return render_template("Asignacion/agregarAsignacion.html",mensaje=mensaje,profesores=profesores,grupos=grupos,materias=materias)
 
+@app.route("/seap/gestionAsignacion")
+def gestionAsignacion():
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("select  a.cveAsignacion, CONCAT(p.nomPro,' ',p.apPaterno,' ',p.apMaterno,' ') as nombreCompleto, a.cveGru, m.nomMat from Asigna as a inner join Profesor as p on a.cvePro=p.cvePro inner join Materia as m on a.cveMat=m.cveMat")
+    asignasiones=cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return render_template("Asignacion/gestionAsignacion.html",asignasiones=asignasiones)
 #---------------Pregunta
 @app.route("/seap/agregarPregunta")
 def agregarPregunta():
@@ -187,7 +225,13 @@ def guardarSesion():
 
 @app.route("/seap/gestionSesion")
 def gestionSesion():
-    return render_template("/Sesion/gestionSesion.html")
+    conexion=get_conexion()
+    cursor=conexion.cursor()
+    cursor.execute("SELECT cveSesion,cveGru, CONVERT(VARCHAR(10), fecha, 103) AS fecha, CONVERT(VARCHAR(5), horaInicio, 108) AS horaInicio,CONVERT(VARCHAR(5), horaFin, 108) AS horaFin FROM Sesiones;")
+    sesiones=cursor.fetchall()
+    cursor.close()
+    conexion.close()   
+    return render_template("Sesion/gestionSesion.html",sesiones=sesiones)
 
 #---------------Reporte
 @app.route("/seap/generarReporte")
